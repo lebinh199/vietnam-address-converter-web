@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Vietnam Address Converter (Old ↔ New)</title>
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;max-width:960px;margin:32px auto;padding:0 16px}
+    textarea{width:100%;height:200px;padding:10px}
+    .row{display:grid;gap:12px}
+    .btn{background:#111;color:#fff;padding:10px 14px;border:none;border-radius:8px;cursor:pointer}
+    .card{border:1px solid #e5e7eb;border-radius:12px;padding:16px}
+    .muted{color:#6b7280;font-size:13px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    pre{background:#f8f8f8;border-radius:8px;padding:12px;white-space:pre-wrap}
+    select,input[type="checkbox"]{padding:8px}
+  </style>
+</head>
+<body>
+  <h1>Vietnam Address Converter (Old ↔ New)</h1>
+  <p class="muted">
+    Dán dữ liệu từ Excel (TSV khuyến nghị). Thư viện <code>vietnam-address-converter</code> nạp dữ liệu mapping qua CDN.
+  </p>
+
+  <div class="card row">
+    <label>Chế độ chuyển đổi:</label>
+    <div class="grid">
+      <select id="mode">
+        <option value="old2new">Cũ → Mới (old → new)</option>
+        <option value="new2old">Mới → Cũ (new → old)</option>
+      </select>
+      <label><input type="checkbox" id="noHeader" /> Xuất KHÔNG có header</label>
+    </div>
+  </div>
+
+  <div class="card row">
+    <label>Dữ liệu đầu vào (TSV/CSV – có thể có header):</label>
+    <textarea id="input" placeholder="Ví dụ TSV:
+old_ward_code	old_ward_name	old_district_name	old_province_name
+00123	Phường A	Quận B	Tỉnh C"></textarea>
+    <div class="grid">
+      <button class="btn" id="convertBtn">Chuyển đổi</button>
+      <button class="btn" id="copyBtn">Copy kết quả</button>
+    </div>
+  </div>
+
+  <div class="card row">
+    <label>Kết quả (TSV):</label>
+    <pre id="output" placeholder=""></pre>
+    <div class="muted">Cột kết quả: 
+      old_ward_code, old_ward_name, old_district_name, old_province_name, 
+      new_ward_code, new_ward_name, new_province_name, direction
+    </div>
+  </div>
+
+  <!-- App -->
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
